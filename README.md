@@ -18,10 +18,10 @@
 
 ## Variant별 성공 개수
 
-| Variant            | Qwen2.5-32B-Coder-Instruct | Qwen2.5-7B-Coder-Instruct |
-|--------------------|---------:|---------:|
-| baseline_output    | 5        | 3        |
-| cot_output         | 1        | 0        |
-| fs_baseline_output | 4        | 1        |
-| fs_cot_output      | 3        | 1        |
+| Variant            | Qwen2.5-32B-Coder-Instruct | Qwen2.5-7B-Coder-Instruct | GPT-oss-120b |
+|--------------------|---------:|---------:|---------:|
+| baseline_output    | 5        | 3        | 4        |
+| cot_output         | 1        | 0        | .        |
+| fs_baseline_output | 4        | 1        | 2        |
+| fs_cot_output      | 3        | 1        | .        |
 
