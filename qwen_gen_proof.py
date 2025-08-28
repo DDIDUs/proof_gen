@@ -41,8 +41,8 @@ async def do_baseline(client, model, lemma, fs="", T=0.65):
     return await llm(client, model, inject_fs(BASELINE_PROMPT, lemma, fs), temperature=T)
 
 async def do_cot(client, model, lemma, fs="", T=0.65):
-    sketch = await llm(client, model, inject_fs(COT_GEN_PROMPT, lemma, fs), temperature=T)
-    proof  = await llm(client, model, inject_fs_cot(COT_PROOF_PROMPT, lemma, sketch, fs), temperature=T)
+    sketch = await llm(client, model, inject_fs(OBJ_GEN_PROMPT, lemma, fs), temperature=T)
+    proof  = await llm(client, model, inject_fs_cot(OBJ_PROOF_PROMPT, lemma, sketch, fs), temperature=T)
     return proof, sketch
 
 async def process_one(client, model, item, fs_block, T):
@@ -103,7 +103,7 @@ async def run(inp, outp, model, base_url, temperature, fs_file, shots):
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("--input", "-i", default="./lemmas_short.jsonl")
-    ap.add_argument("--output", "-o", default="./Qwen2.5_7b_proofs.jsonl")
+    ap.add_argument("--output", "-o", default="./gen_results/Qwen2.5_7b_obj_proofs.jsonl")
     ap.add_argument("--model", "-m", default="Qwen/Qwen2.5-Coder-7B-Instruct")
     ap.add_argument("--base-url", default=DEFAULT_BASE_URL)
     ap.add_argument("--temperature", type=float, default=0.2)
