@@ -41,9 +41,9 @@ https://gist.github.com/KiJeong-Lim/b6b0eaab665a24893130a102b677cb58
 bash server.sh
 ```
 
-3. qwen_gen_proof.py를 실행하여 proof를 생성합니다.
+3. gen_proof.py를 실행하여 proof를 생성합니다.
 ```bash
-python3 qwen_gen_proof.py
+python3 gen_proof.py
 ```
 
 4. 이후 다음의 예시와 같이 생성된 proof에 대한 평가를 진행합니다.
