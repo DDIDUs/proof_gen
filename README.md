@@ -43,7 +43,15 @@ bash server.sh
 
 3. gen_proof.py를 실행하여 proof를 생성합니다.
 ```bash
-python3 gen_proof.py
+python3 gen_proof.py \
+      --input ./data/lemmas_short.jsonl \
+      --output ./results/gen_results/Qwen2.5_7b_proofs.jsonl \
+      --model Qwen/Qwen2.5-Coder-7B-Instruct \
+      --base-url http://localhost:8004/v1 \
+      --temperature 0.7 \
+      --top-p 0.8 \
+      --shots 4 \
+      --samples 1
 ```
 
 4. 이후 다음의 예시와 같이 생성된 proof에 대한 평가를 진행합니다.
