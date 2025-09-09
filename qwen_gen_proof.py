@@ -136,8 +136,8 @@ async def run(inp, outp, model, base_url, temperature, top_p, fs_file, shots, sa
 # ---------- cli ----------
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
-    ap.add_argument("--input", "-i", default="./lemmas_short.jsonl")
-    ap.add_argument("--output", "-o", default="./gen_results/Qwen2.5_7b_CoT_proofs.jsonl")
+    ap.add_argument("--input", "-i", default="./data/lemmas_short.jsonl")
+    ap.add_argument("--output", "-o", default="./results/gen_results/Qwen2.5_7b_CoT_proofs.jsonl")
     ap.add_argument("--model", "-m", default="Qwen/Qwen2.5-Coder-7B-Instruct")
     ap.add_argument("--base-url", default=DEFAULT_BASE_URL)
     ap.add_argument("--temperature", type=float, default=0.7)

@@ -1,0 +1,3 @@
+[submodule "eval/l4v"]
+	path = eval/l4v
+	url = https://github.com/seL4/l4v.git

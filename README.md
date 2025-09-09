@@ -25,3 +25,35 @@
 | fs_baseline_output | 4        | 1        | 2        |
 | fs_cot_output      | 3        | 1        | .        |
 
+## 실험 방법
+
+1. 실험을 위한 의존성을 설치합니다.
+```bash
+pip install -r requirements.txt
+git submodule update --init --recursive
+```
+
+이후 아래 링크의 설명을 따라 l4v를 빌드합니다.
+https://gist.github.com/KiJeong-Lim/b6b0eaab665a24893130a102b677cb58
+
+2. 실험을 위한 VLLM 서버를 실행합니다. 예제에서는 Qwen2.5-Coder-7B-Instruct 모델을 활용하였습니다.
+```bash
+bash server.sh
+```
+
+3. qwen_gen_proof.py를 실행하여 proof를 생성합니다.
+```bash
+python3 qwen_gen_proof.py
+```
+
+4. 이후 다음의 예시와 같이 생성된 proof에 대한 평가를 진행합니다.
+```bash
+export PATH="$PWD/eval/l4v/isabelle/bin:$PATH"
+
+python3 eval.py \
+      --jsonl ./result/gen_result/Qwen2.5_7b_proof.jsonl \
+      --thy ./l4v/lib/CorresK/CorresK_Lemmas.thy \
+      --session CorresK \
+      --root l4v/ \
+      --out ./result/eval_result/Qwen2.5_7b_CoT_build_report.jsonl
+```
