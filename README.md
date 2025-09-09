@@ -35,7 +35,6 @@ source proof_gen/bin/activate
 
 ```bash
 pip install -r requirements.txt
-git submodule update --init --recursive
 ```
 
 이후 아래 링크의 설명을 따라 l4v를 빌드합니다.
@@ -61,11 +60,11 @@ python3 gen_proof.py \
 
 4. 이후 다음의 예시와 같이 생성된 proof에 대한 평가를 진행합니다.
 ```bash
-export PATH="$PWD/eval/l4v/isabelle/bin:$PATH"
+export PATH="$PWD/verification/l4v/isabelle/bin:$PATH"
 
 python3 eval.py \
       --jsonl ./results/gen_result/Qwen2.5_7b_proof.jsonl \
-      --thy ./eval/l4v/lib/CorresK/CorresK_Lemmas.thy \
+      --thy ./verifiaction/l4v/lib/CorresK/CorresK_Lemmas.thy \
       --session CorresK \
       --root l4v/ \
       --out ./results/eval_result/Qwen2.5_7b_CoT_build_report.jsonl
