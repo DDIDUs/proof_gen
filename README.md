@@ -29,6 +29,11 @@
 
 1. 실험을 위한 의존성을 설치합니다.
 ```bash
+python3 -m venv proof_gen
+source proof_gen/bin/activate
+```
+
+```bash
 pip install -r requirements.txt
 git submodule update --init --recursive
 ```
