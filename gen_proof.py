@@ -1,4 +1,4 @@
-import asyncio, json, argparse
+import asyncio, json, argparse, os
 from openai import AsyncOpenAI
 from prompt import *  
 
@@ -106,6 +106,11 @@ async def run(inp, outp, model, base_url, temperature, top_p, fs_file, shots, sa
     client = AsyncOpenAI(api_key="EMPTY", base_url=base_url)
     fs_block = fewshot_block(fs_file, shots)
 
+    # 출력 파일 디렉토리 생성 (없으면)
+    out_dir = os.path.dirname(outp)
+    if out_dir:  # 빈 문자열이 아닐 때만 생성 시도
+        os.makedirs(out_dir, exist_ok=True)
+
     with open(inp, "r", encoding="utf-8") as fin, open(outp, "w", encoding="utf-8") as fout:
         for line in fin:
             try:
@@ -124,7 +129,6 @@ async def run(inp, outp, model, base_url, temperature, top_p, fs_file, shots, sa
                 for rec in all_samples:
                     fout.write(json.dumps(rec, ensure_ascii=False) + "\n")
             except Exception as e:
-                # 전체 처리 실패 시 하나의 에러 레코드로 남김
                 fout.write(json.dumps({
                     "input": item.get("input"),
                     "gt": item.get("gt"),
@@ -142,7 +146,7 @@ if __name__ == "__main__":
     ap.add_argument("--base-url", default=DEFAULT_BASE_URL)
     ap.add_argument("--temperature", type=float, default=0.7)
     ap.add_argument("--top-p", type=float, default=0.8)
-    ap.add_argument("--fewshot-file", type=str, default='./lemmas_AInvs.jsonl')
+    ap.add_argument("--fewshot-file", type=str, default='./data/lemmas_AInvs.jsonl')
     ap.add_argument("--shots", type=int, default=4)
     ap.add_argument("--samples", "-s", type=int, default=5, help="number of generations per lemma")
     args = ap.parse_args()
