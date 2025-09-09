@@ -52,7 +52,7 @@ export PATH="$PWD/eval/l4v/isabelle/bin:$PATH"
 
 python3 eval.py \
       --jsonl ./result/gen_result/Qwen2.5_7b_proof.jsonl \
-      --thy ./l4v/lib/CorresK/CorresK_Lemmas.thy \
+      --thy ./eval/l4v/lib/CorresK/CorresK_Lemmas.thy \
       --session CorresK \
       --root l4v/ \
       --out ./result/eval_result/Qwen2.5_7b_CoT_build_report.jsonl
